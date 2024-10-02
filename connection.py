@@ -22,19 +22,23 @@ CREATE TABLE IF NOT EXISTS product(
 ) ENGINE=INNODB;
 """)
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS stock (
+    stock_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    incoming_quantity INT NOT NULL,
+    outgoing_quantity INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    alert BOOLEAN NOT NULL,
+    product_id INT,
+    CONSTRAINT fk_product
+        FOREIGN KEY (product_id) REFERENCES product(id)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+""")
+
 CONNECTION.commit()
+
 cursor.close()
 CONNECTION.close()
-
-
-# with open('database.sql', 'r') as file:
-#     sql_script = file.read()
-
-# sql_commands = sql_script.split(';')
-
-# for command in sql_commands:
-#     if command.strip():  
-#         cursor.execute(command)
-
-# CONNECTION.commit()
-
