@@ -1,4 +1,7 @@
 from model.Product import Product
+from database import databaseCreation
+
+databaseCreation.createDatabase()
 
 product_manager = Product(
     host='localhost',
