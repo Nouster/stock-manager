@@ -1,54 +1,23 @@
-import pymysql.cursors
+from model.Product import Product
 
-CONNECTION = pymysql.connect(host='localhost',
-                             user='root',
-                             password='root',
-                             database='stock-manager',
-                             port=8889,
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
+product_manager = Product(
+    host='localhost',
+    user='root',
+    password='root',
+    database='stock-manager',
+    port=8889
+)
 
-try:
-    cursor = CONNECTION.cursor()
+user_input = input("Souhaitez-vous consulter la liste des équipements : \n")
 
-    cursor.execute("SELECT * FROM product;")
-    products = cursor.fetchall()
+if user_input.lower() == "oui":
+    product_manager.get_all_products()
 
-    for product in products:
-        print(f"ID: {product['id']}, Name: {product['name']}, Reference: {product['reference']}, Quantity: {product['quantity']}")
+user_input = input("Souhaitez-vous ajouter des produits : \n")
+if user_input.lower() == "oui":
+    user_input_name = input("Quel nom pour votre produit : \n")
+    user_input_reference = input("Quel référence pour votre produit : \n")
+    user_input_quantity = input("Quelle quantité à ajouter : \n")
+    int(user_input_quantity)
 
-except pymysql.MySQLError as e:
-    print(f"Erreur lors de la récupération des produits : {e}")
-
-finally:
-    cursor.close()
-
-
-def add_product(name, reference, quantity):
-    try:
-        cursor = CONNECTION.cursor()
-        cursor.execute("INSERT INTO product (name, reference, quantity) VALUES (%s, %s, %s)", 
-                       (name, reference, quantity))
-        CONNECTION.commit()  
-        print(f"Produit '{name}' ajouté avec succès !")
-    except pymysql.MySQLError as e:
-        print(f"Erreur lors de l'ajout du produit : {e}")
-    finally:
-        cursor.close()
-
-
-user_input = input('Souhaitez-vous ajouter un équipement ? (oui/non) : ')
-if user_input.lower() == 'oui':
-    equipment_name_input = input("Nom de l'équipement : ")
-    equipment_reference_input = input("Référence du produit : ")
-    equipment_quantity_input = input("Quantité à mettre en stock : ")
-
-    try:
-        equipment_quantity_input = int(equipment_quantity_input)  
-        add_product(equipment_name_input, equipment_reference_input, equipment_quantity_input)
-    except ValueError:
-        print("Erreur : la quantité doit être un nombre entier.")
-else:
-    print("Aucun équipement ajouté.")
-
-CONNECTION.close()
+    product_manager.add_product(user_input_name,user_input_reference,user_input_quantity)
