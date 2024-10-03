@@ -1,10 +1,12 @@
 from dotenv import load_dotenv
 import os
 import pymysql.cursors
+from database.AbstractDatabaseConnection import AbstractDatabaseConnection
+
 
 load_dotenv()
 
-class DatabaseConnection:
+class DatabaseConnection (AbstractDatabaseConnection):
     def __init__(self):
         host = os.getenv('DB_HOST', 'localhost')
         user = os.getenv('DB_USER', 'root')
