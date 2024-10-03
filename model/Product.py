@@ -1,7 +1,7 @@
 import pymysql.cursors
 
 class Product:
-    def __init__(self, host, user, password, database, port=3306):
+    def __init__(self, host='localhost', user='root', password='root', database='stock-manager', port=8889):
         self.connection = pymysql.connect(
             host=host,
             user=user,

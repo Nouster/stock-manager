@@ -1,7 +1,7 @@
 import pymysql.cursors
 
 
-class databaseCreation:
+class DatabaseCreation:
         
     @staticmethod
     def createDatabase():
@@ -15,7 +15,7 @@ class databaseCreation:
 
         cursor = CONNECTION.cursor()
 
-        with open('database.sql', 'r') as file:
+        with open('database/database.sql', 'r') as file:
             sql_script = file.read()
 
         sql_commands = sql_script.split(';')

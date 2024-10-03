@@ -1,15 +1,12 @@
 from model.Product import Product
-from database import databaseCreation
+from database.DatabaseCreation import DatabaseCreation
 
-databaseCreation.createDatabase()
+createDatabase = input('Souhaitez-vous créer la base de données \n')
 
-product_manager = Product(
-    host='localhost',
-    user='root',
-    password='root',
-    database='stock-manager',
-    port=8889
-)
+if createDatabase.lower == 'oui':
+    DatabaseCreation.createDatabase()
+
+product_manager = Product()
 
 user_input = input("Souhaitez-vous consulter la liste des équipements : \n")
 

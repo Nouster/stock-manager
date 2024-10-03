@@ -42,4 +42,3 @@ CREATE TABLE IF NOT EXISTS user_stock (
         ON DELETE CASCADE
 ) ENGINE=INNODB;
 
-INSERT INTO `product`(`id`, `name`, `reference`, `quantity`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
