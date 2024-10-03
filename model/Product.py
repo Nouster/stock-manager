@@ -1,16 +1,9 @@
+from database.DatabaseConnection import DatabaseConnection 
 import pymysql.cursors
 
 class Product:
-    def __init__(self, host='localhost', user='root', password='root', database='stock-manager', port=8889):
-        self.connection = pymysql.connect(
-            host=host,
-            user=user,
-            password=password,
-            database=database,
-            port=port,
-            charset='utf8mb4',
-            cursorclass=pymysql.cursors.DictCursor
-        )
+    def __init__(self, db_connection):
+        self.connection = db_connection.get_connection()
 
     def get_all_products(self):
         try:
