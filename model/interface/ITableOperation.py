@@ -1,7 +1,7 @@
 
 from abc import ABC, abstractmethod
 
-class IProduct(ABC):
+class ITableOperation(ABC):
     
     @abstractmethod
     def get_all_products(self):

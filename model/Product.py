@@ -1,7 +1,7 @@
 import pymysql.cursors
-from model.interface.IProduct import IProduct
+from model.interface.ITableOperation import ITableOperation
 
-class Product(IProduct):
+class Product(ITableOperation):
     def __init__(self, db_connection):
         self.connection = db_connection.get_connection()
 
