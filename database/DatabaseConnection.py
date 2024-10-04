@@ -8,11 +8,11 @@ load_dotenv()
 
 class DatabaseConnection (AbstractDatabaseConnection):
     def __init__(self):
-        host = os.getenv('DB_HOST', 'localhost')
-        user = os.getenv('DB_USER', 'root')
-        password = os.getenv('DB_PASSWORD', 'root')
-        database = os.getenv('DB_DATABASE', 'stock-manager')
-        port = int(os.getenv('DB_PORT', 8889))
+        host = os.getenv('DB_HOST')
+        user = os.getenv('DB_USER')
+        password = os.getenv('DB_PASSWORD')
+        database = os.getenv('DB_DATABASE')
+        port = int(os.getenv('DB_PORT'))
 
         self.connection = None
         try:
