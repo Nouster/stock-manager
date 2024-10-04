@@ -4,11 +4,11 @@ from abc import ABC, abstractmethod
 class ITableOperation(ABC):
     
     @abstractmethod
-    def get_all_products(self):
+    def get_all_entries(self):
         pass
 
     @abstractmethod
-    def add_product(self, name, reference, quantity):
+    def add_entry(self, name, reference, quantity):
         pass
 
     @abstractmethod

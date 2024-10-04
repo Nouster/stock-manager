@@ -5,7 +5,7 @@ class Product(ITableOperation):
     def __init__(self, db_connection):
         self.connection = db_connection.get_connection()
 
-    def get_all_products(self):
+    def get_all_entries(self):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("SELECT * FROM product;")
@@ -17,7 +17,7 @@ class Product(ITableOperation):
         except pymysql.MySQLError as e:
             print(f"Erreur lors de la récupération des produits : {e}")
 
-    def add_product(self, name, reference, quantity):
+    def add_entry(self, name, reference, quantity):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("INSERT INTO product (name, reference, quantity) VALUES (%s, %s, %s)", 
