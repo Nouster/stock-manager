@@ -8,7 +8,7 @@ class ITableOperation(ABC):
         pass
 
     @abstractmethod
-    def add_entry(self, name, reference, quantity):
+    def add_entry():
         pass
 
     @abstractmethod
